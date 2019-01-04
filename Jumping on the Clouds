@@ -10,7 +10,7 @@ import sys
 def jumpingOnClouds(c):
     jumps = 0
     i = 0
-    while i < len(c): # 0 0 1
+    while i < len(c): # 0 0 1 atau 0 1 0, now 0 next 1 next-nya lagi antara 0 atau tidak ada
         if c[i] == 0 and i < len(c)-1:
             if c[i+1] == 0:
                 i += 1
@@ -21,8 +21,6 @@ def jumpingOnClouds(c):
             elif i < len(c)-2:
                 i += 2
                 jumps += 1
-                if c[i] != 0:
-                    i += 1
         else:
             i+=1
     return jumps
