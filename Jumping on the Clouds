@@ -1,0 +1,41 @@
+#!/bin/python
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the jumpingOnClouds function below.
+def jumpingOnClouds(c):
+    jumps = 0
+    i = 0
+    while i < len(c): # 0 0 1
+        if c[i] == 0 and i < len(c)-1:
+            if c[i+1] == 0:
+                i += 1
+                jumps += 1
+                if i < len(c)-1:
+                    if c[i+1] == 0:
+                        i += 1
+            elif i < len(c)-2:
+                i += 2
+                jumps += 1
+                if c[i] != 0:
+                    i += 1
+        else:
+            i+=1
+    return jumps
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(raw_input())
+
+    c = map(int, raw_input().rstrip().split())
+
+    result = jumpingOnClouds(c)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
