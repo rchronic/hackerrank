@@ -1,0 +1,53 @@
+#!/bin/python
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the dynamicArray function below.
+def dynamicArray(n, queries):
+    lastAnswer = 0
+    narr = []
+    finalArr = []
+
+    for i in range(n):
+        narr.append([])
+
+    i = 0
+    while i < len(queries):
+        x = queries[i][1]
+        y = queries[i][2]
+        if queries[i][0] == 1:
+            seq = ((x ^ lastAnswer) % n)
+            narr[seq].append(y)
+        elif queries[i][0] == 2:
+            seq = ((x ^ lastAnswer) % n)
+            seqVal = y % len(narr[seq])
+            lastAnswer = narr[seq][seqVal]
+            finalArr.append(lastAnswer)
+        i+=1
+
+    return finalArr
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nq = raw_input().rstrip().split()
+
+    n = int(nq[0])
+
+    q = int(nq[1])
+
+    queries = []
+
+    for _ in xrange(q):
+        queries.append(map(int, raw_input().rstrip().split()))
+
+    result = dynamicArray(n, queries)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
