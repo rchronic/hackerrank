@@ -24,7 +24,7 @@ def dynamicArray(n, queries):
             narr[seq].append(y)
         elif queries[i][0] == 2:
             seq = ((x ^ lastAnswer) % n)
-            seqVal = y % len(narr[seq])
+            seqVal = y % len(narr[seq]) # hanya merupakan index yg dipilih, bukan last index
             lastAnswer = narr[seq][seqVal]
             finalArr.append(lastAnswer)
         i+=1
