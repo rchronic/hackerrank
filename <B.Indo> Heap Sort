@@ -34,7 +34,7 @@ int main() {
 }
 
 void heapify(int data[], int n, int i) {
-  int largest = i;
+  int largest = i; // parent node paling akhir
   int l = 2*i + 1; // 2*(n/2-1) + 1 = n-2+1 = n-1
   int r = 2*i + 2; // 2*(n/2-1) + 2 = n-2+2 = n , ex: n = 2, r = 2. Kondisi ketika n kelipatan 2 dan r = n tidak pernah ada
 
