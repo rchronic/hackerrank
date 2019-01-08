@@ -1,0 +1,55 @@
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void heapify(int data[], int n, int i);
+
+int main() {
+  int data[100], n;
+  printf("Enter the number of elements to be sorted: ");
+  scanf("%d", &n);
+  for(int i = 0; i < n; i++) {
+    printf("%d. Enter element: ", i+1);
+    scanf("%d", &data[i]);
+  }
+
+  for(int i = n/2-1; i >= 0; i--) {
+    heapify(data,n,i);
+  }
+
+  for(int i = n-1; i >= 0; i--) { // n-1 ditambah swap untuk menaruh highest parent ke posisi terakhir
+    int temp = data[0];
+    data[0] = data[i];
+    data[i] = temp;
+
+    heapify(data,i,0); // jumlah array yg di-heapify berkurang karena dampak dari i = n-1. Lalu kenapa i = 0 karena yg di-heapify adalah highest parent-nya saja
+  }
+
+  printf("In ascending order: ");
+  for(int i = 0; i < n; i++) {
+    printf("%d  ", data[i]);
+  }
+  printf("\n");
+  return 0;
+}
+
+void heapify(int data[], int n, int i) {
+  int largest = i; // parent node paling akhir
+  int l = 2*i + 1; // 2*(n/2-1) + 1 = n-2+1 = n-1. Dikali 2 karena banyak leaf-nya ada di posisi kelipatan 2
+  int r = 2*i + 2; // 2*(n/2-1) + 2 = n-2+2 = n , ex: n = 2, r = 2. Kondisi ketika n kelipatan 2 dan r = n tidak pernah ada
+
+  if(l < n && data[l] > data[largest]) { // l < n digunakan di looping terakhir max heapify karena nanti hanya tersisa satu parent node dengan tidak memiliki leaf node kiri dan kanan
+    largest = l;
+  }
+
+  if(r < n && data[r] > data[largest]) { // r < n untuk memeriksa bahwa r leaf node ada atau tidak. ex: n = 6, r = 6, l = 6-1
+    largest = r;
+  }
+
+  if(largest != i) { // kondisi ini berguna untuk men-swap jika leaf node > parent node-nya
+    int temp = data[i];
+    data[i] = data[largest];
+    data[largest] = temp;
+    heapify(data,n,largest); // mundur ke iterasi loop sebelumnya atau bisa disebut juga menaikkan posisi kursor parent saat ini ke parent selanjutnya.
+  }
+}
