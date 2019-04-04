@@ -1,0 +1,53 @@
+#!/bin/python
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the repeatedString function below.
+def repeatedString(s, n):
+    sums = 0
+    if len(s) == n:
+        x = sorted(s)
+        for i in x:
+            if i == 'a':
+                sums += 1
+            else:
+                break
+    elif len(s) > n:
+        for i in range(n):
+            if s[i] == 'a':
+                sums += 1
+    else:
+        flags = True
+        for i in s:
+            if i != 'a':
+                flags = False
+            else:
+                sums += 1
+
+        if flags:
+            sums = sums - sums + n
+        else:
+            sums = ((n/len(s))*sums) # dividen menentukan banyaknya perulangan s di dalam range n
+            for i in range(n%len(s)):
+                if s[i] == 'a':
+                    sums += 1
+
+    return sums
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = raw_input()
+
+    n = int(raw_input())
+
+    result = repeatedString(s, n)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
