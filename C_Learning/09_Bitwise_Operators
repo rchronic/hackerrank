@@ -1,0 +1,70 @@
+// different variables name
+// void calculate_the_maximum(int n, int k) {
+//     //Write your code here.
+//     int m1, m2, m3 = 0;
+
+//     for (int i = 1; i < n; i++) {
+//       for (int j = i + 1; j <= n; j++) {
+//         int m11 = i & j;
+//         int m21 = i | j;
+//         int m31 = i ^ j;
+
+//         if (m11 > m1 && m11 < k) {
+//           m1 = m11;
+//         }
+//         if (m21 > m2 && m21 < k) {
+//           m2 = m21;
+//         }
+//         if (m31 > m3 && m31 < k) {
+//           m3 = m31;
+//         }
+//       }
+//     }
+
+//     printf("%d\n%d\n%d",m1,m2,m3);
+// }
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+
+void calculate_the_maximum(int n, int k) {
+    //Write your code here.
+    int maxAnd = 0;
+    int maxOr = 0;
+    int maxXor = 0;
+
+    for (int i = 1; i < n; i++) {
+      for (int j = i + 1; j <= n; j++) {
+        int maxAnd1 = i & j;
+        int maxOr1 = i | j;
+        int maxXor1 = i ^ j;
+
+        if (maxAnd1 > maxAnd && maxAnd1 < k) {
+          maxAnd = maxAnd1;
+        }
+        if (maxOr1 > maxOr && maxOr1 < k) {
+          maxOr = maxOr1;
+        }
+        if (maxXor1 > maxXor && maxXor1 < k) {
+          maxXor = maxXor1;
+        }
+      }
+      
+    }
+
+    printf("%d\n%d\n%d", maxAnd, maxOr, maxXor);
+}
+
+int main() {
+    int n, k;
+  
+    scanf("%d %d", &n, &k);
+    calculate_the_maximum(n, k);
+ 
+    return 0;
+}
