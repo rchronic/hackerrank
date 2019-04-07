@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+
+    int n;
+    scanf("%d", &n);
+  	// Complete the code to print the pattern.
+    int nMatrix = n*2-1;
+    for(int i = 0; i < nMatrix; i++) {
+        for(int j = 0; j < nMatrix; j++) {
+            int x = i <= j ? i : j; // left then right
+            x = x <= (nMatrix-1)-j ? x : (nMatrix-1)-j; // j vs (nMatrix-1) this is the point.
+            x = x <= (nMatrix-1)-i ? x : (nMatrix-1)-i; // same as above but top to bottom. The main point is on i. Start from the middle to lower            
+            printf("%d ", n-x);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
