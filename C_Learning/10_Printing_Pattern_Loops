@@ -14,7 +14,10 @@ int main()
         for(int j = 0; j < nMatrix; j++) {
             int x = i <= j ? i : j; // left then right
             x = x <= (nMatrix-1)-j ? x : (nMatrix-1)-j; // j vs (nMatrix-1) this is the point.
-            x = x <= (nMatrix-1)-i ? x : (nMatrix-1)-i; // same as above but top to bottom. The main point is on i. Start from the middle to lower            
+            x = x <= (nMatrix-1)-i ? x : (nMatrix-1)-i; // same as above but top to bottom. The main point is on i. Start from the middle to lower.
+            // actually three of x above are the same code. But, those are appropriate with variable i and j that the middle value of both are the main point.
+            // (nMatrix-1)-i and (nMatrix-1)-j are the main point of the matrix.
+            
             printf("%d ", n-x);
         }
         printf("\n");
